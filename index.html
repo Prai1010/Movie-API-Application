@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Movie Search</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Config for Neon Theme -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              neon: '#00fff7',
+              dark: '#0a0f1f',
+              grayish: '#1a1f33',
+            },
+            fontFamily: {
+              futuristic: ['Orbitron', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body class="bg-dark text-neon font-futuristic min-h-screen p-6">
+
+    <!-- Header -->
+    <header class="text-center mb-10">
+      <h1 class="text-4xl font-bold neon-glow">🎬 Neon Movie Finder</h1>
+      <p class="text-gray-300 mt-2">Type. Filter. Discover.</p>
+    </header>
+
+    <!-- Search Area -->
+    <main class="max-w-5xl mx-auto">
+      <form id="search-form" class="flex flex-wrap items-center justify-center gap-4 mb-8">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search movies..."
+          required
+          class="bg-grayish text-white px-4 py-2 rounded w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-neon"
+        />
+
+        <input
+          type="number"
+          id="year-input"
+          placeholder="Year (optional)"
+          min="1900"
+          max="2099"
+          class="bg-grayish text-white px-4 py-2 rounded w-40 focus:outline-none focus:ring-2 focus:ring-neon"
+        />
+
+        <button
+          type="submit"
+          class="bg-neon text-dark px-6 py-2 rounded hover:bg-white hover:text-black transition"
+        >
+          Search
+        </button>
+      </form>
+
+      <!-- Genre Buttons -->
+      <div class="flex flex-wrap justify-center gap-2 mb-6" id="genre-buttons">
+        <!-- JS will render genre buttons here -->
+      </div>
+
+      <!-- Clear Filter -->
+      <div class="text-center mb-6">
+        <button id="clear-filters" class="text-sm text-red-500 hover:underline">Clear Filters</button>
+      </div>
+
+      <!-- Active Filter Label -->
+      <div id="active-filter" class="text-center text-sm text-gray-400 mb-6"></div>
+
+      <!-- Movie Results -->
+      <section
+        id="movie-results"
+        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- JS inserts movie cards here -->
+      </section>
+
+      <!-- Pagination -->
+      <div class="flex justify-center items-center gap-4 mt-10">
+        <button id="prev-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50">← Prev</button>
+        <span id="page-number" class="text-white text-lg font-bold">Page 1</span>
+        <button id="next-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50">Next →</button>
+      </div>
+    </main>
+
+    <!-- JS -->
+    <script src="script.js" defer></script>
+  </body>
+</html>
