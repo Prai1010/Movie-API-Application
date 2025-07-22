@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neon Movie Search</title>
+    <title>FindThatFlick</title>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,36 +18,54 @@
               grayish: '#1a1f33',
             },
             fontFamily: {
-              futuristic: ['Orbitron', 'sans-serif'],
-            },
+  futuristic: ['Orbitron', 'sans-serif'],
+  inter: ['Inter', 'sans-serif'],
+},
           },
         },
       };
     </script>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+
+    <style>
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
   </head>
 
-  <body class="bg-dark text-neon font-futuristic min-h-screen p-6">
+  <body class="bg-dark text-neon font-inter min-h-screen p-6">
 
     <!-- Header -->
     <header class="text-center mb-10">
-      <h1 class="text-4xl font-bold neon-glow">🎬 Neon Movie Finder</h1>
+      <h1 class="text-4xl font-bold neon-glow">FindThatFlick</h1>
       <p class="text-gray-300 mt-2">Type. Filter. Discover.</p>
     </header>
 
     <!-- Search Area -->
     <main class="max-w-5xl mx-auto">
-      <form id="search-form" class="flex flex-wrap items-center justify-center gap-4 mb-8">
+      <form id="search-form" class="flex flex-wrap items-center justify-center gap-4 mb-8" aria-label="Movie search form">
+        <label for="search-input" class="sr-only">Movie Title</label>
         <input
           type="text"
           id="search-input"
           placeholder="Search movies..."
           required
           class="bg-grayish text-white px-4 py-2 rounded w-full md:w-1/2 focus:outline-none focus:ring-2 focus:ring-neon"
+          aria-label="Search movie title"
         />
 
+        <label for="year-input" class="sr-only">Release Year</label>
         <input
           type="number"
           id="year-input"
@@ -55,24 +73,26 @@
           min="1900"
           max="2099"
           class="bg-grayish text-white px-4 py-2 rounded w-40 focus:outline-none focus:ring-2 focus:ring-neon"
+          aria-label="Movie release year"
         />
 
         <button
           type="submit"
           class="bg-neon text-dark px-6 py-2 rounded hover:bg-white hover:text-black transition"
+          aria-label="Search movies"
         >
           Search
         </button>
       </form>
 
       <!-- Genre Buttons -->
-      <div class="flex flex-wrap justify-center gap-2 mb-6" id="genre-buttons">
+      <div class="flex flex-wrap justify-center gap-2 mb-6" id="genre-buttons" aria-label="Genre filter buttons">
         <!-- JS will render genre buttons here -->
       </div>
 
       <!-- Clear Filter -->
       <div class="text-center mb-6">
-        <button id="clear-filters" class="text-sm text-red-500 hover:underline">Clear Filters</button>
+        <button id="clear-filters" class="text-sm text-red-500 hover:underline" aria-label="Clear selected filters">Clear Filters</button>
       </div>
 
       <!-- Active Filter Label -->
@@ -82,15 +102,17 @@
       <section
         id="movie-results"
         class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        aria-live="polite"
+        aria-label="Movie search results"
       >
         <!-- JS inserts movie cards here -->
       </section>
 
       <!-- Pagination -->
-      <div class="flex justify-center items-center gap-4 mt-10">
-        <button id="prev-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50">← Prev</button>
+      <div class="flex justify-center items-center gap-4 mt-10" aria-label="Pagination controls">
+        <button id="prev-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50" aria-label="Previous page">← Prev</button>
         <span id="page-number" class="text-white text-lg font-bold">Page 1</span>
-        <button id="next-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50">Next →</button>
+        <button id="next-btn" class="bg-gray-600 text-white px-4 py-2 rounded disabled:opacity-50" aria-label="Next page">Next →</button>
       </div>
     </main>
 
